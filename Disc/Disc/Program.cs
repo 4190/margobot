@@ -55,9 +55,23 @@ namespace Disc
             await Client.SetGameAsync("Piece of shit", "https://www.google.com/");
         }
 
-        private Task Client_MessageReceived(SocketMessage arg)
+        private async Task Client_MessageReceived(SocketMessage MessageParam)
         {
-            throw new NotImplementedException();
+            var Message = MessageParam as SocketUserMessage;
+            var Context = new SocketCommandContext(Client, Message);
+
+            if (Context.Message == null || Context.Message.Content == "") return;
+            if (Context.User.IsBot) return;
+
+            int ArgPos = 0;
+            if (!(Message.HasStringPrefix("a!", ref ArgPos) || Message.HasMentionPrefix(Client.CurrentUser, ref ArgPos))) return;
+
+            var Result = await Commands.ExecuteAsync(Context, ArgPos, null);
+
+            if(!Result.IsSuccess)
+            {
+                Console.WriteLine($"{DateTime.Now} at Commands] Something went wrong with executing a command. Text: {Context.Message.Content} | Error: {Result.ErrorReason}"); 
+            }
         }
 
 
