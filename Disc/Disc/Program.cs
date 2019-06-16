@@ -44,7 +44,7 @@ namespace Disc
 
             await Task.Delay(-1); 
         }
-        //komentaaaaaaaaaaaa
+        
         private async Task Client_Log(LogMessage Message)
         {
             Console.WriteLine($"{DateTime.Now} at {Message.Source}] {Message.Message}");
