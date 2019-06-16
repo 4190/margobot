@@ -1,0 +1,11 @@
+E:\C#\C#programy\discord\Disc\Disc\bin\Debug\netcoreapp2.1\Disc.deps.json
+E:\C#\C#programy\discord\Disc\Disc\bin\Debug\netcoreapp2.1\Disc.runtimeconfig.json
+E:\C#\C#programy\discord\Disc\Disc\bin\Debug\netcoreapp2.1\Disc.runtimeconfig.dev.json
+E:\C#\C#programy\discord\Disc\Disc\bin\Debug\netcoreapp2.1\Disc.dll
+E:\C#\C#programy\discord\Disc\Disc\obj\Debug\netcoreapp2.1\Disc.csprojAssemblyReference.cache
+E:\C#\C#programy\discord\Disc\Disc\obj\Debug\netcoreapp2.1\Disc.csproj.CoreCompileInputs.cache
+E:\C#\C#programy\discord\Disc\Disc\obj\Debug\netcoreapp2.1\Disc.AssemblyInfoInputs.cache
+E:\C#\C#programy\discord\Disc\Disc\obj\Debug\netcoreapp2.1\Disc.AssemblyInfo.cs
+E:\C#\C#programy\discord\Disc\Disc\bin\Debug\netcoreapp2.1\Disc.pdb
+E:\C#\C#programy\discord\Disc\Disc\obj\Debug\netcoreapp2.1\Disc.dll
+E:\C#\C#programy\discord\Disc\Disc\obj\Debug\netcoreapp2.1\Disc.pdb
