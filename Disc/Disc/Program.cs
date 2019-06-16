@@ -38,13 +38,13 @@ namespace Disc
             Client.Ready += Client_Ready;
             Client.Log += Client_Log;
 
-            string Token = "NTMzNjg4MjcwNzE5Mjg3Mjk2.XQY7OA.DrFAb0oT2HD43l7Mw3ynA621bSo";
+            string Token = "NTMzNjg4MjcwNzE5Mjg3Mjk2.XQY7OA.DrFAb0oT2HD43l7Mw3ynA621bSo";      //token bota. NIE UPUBLICZNIAĆ NIGDZIE
             await Client.LoginAsync(TokenType.Bot, Token);
             await Client.StartAsync();
 
-            await Task.Delay(-1); 
+            await Task.Delay(-1);       //bot nie wylacza sie po za dlugim oczekiwaniu
         }
-        //komentaaaaaaaaaaaa
+        
         private async Task Client_Log(LogMessage Message)
         {
             Console.WriteLine($"{DateTime.Now} at {Message.Source}] {Message.Message}");
@@ -52,7 +52,7 @@ namespace Disc
 
         private async Task Client_Ready()
         {
-            await Client.SetGameAsync("Piece of shit", "https://www.google.com/");
+            await Client.SetGameAsync("Piece of shit", "https://www.google.com/");       //wyswietla ze bot jest w grze "piece of shit".
         }
 
         private async Task Client_MessageReceived(SocketMessage MessageParam)
