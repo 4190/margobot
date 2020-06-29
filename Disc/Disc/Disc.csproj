@@ -1,19 +1,19 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Discord.Net" Version="2.1.1" />
+    <None Remove="Core\Commands\Database1.mdf" />
+    <None Remove="Core\Commands\Database1_log.ldf" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Core\Data\" />
-    <Folder Include="Resources\Database\" />
-    <Folder Include="Resources\Extensions\" />
-    <Folder Include="Resources\Datatypes\" />
+    <PackageReference Include="Discord.Net" Version="2.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
 </Project>

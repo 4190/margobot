@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 using Discord;
 using Discord.WebSocket;
@@ -10,6 +11,9 @@ namespace Disc
 {
     class Program
     {
+
+
+        List<IMessage> mes = new List<IMessage>();
         private DiscordSocketClient Client;
         private CommandService Commands;
 
@@ -17,8 +21,7 @@ namespace Disc
         static void Main(string[] args)
             => new Program().MainAsync().GetAwaiter().GetResult();
         
-
-
+        
         private async Task MainAsync()
         {
             Client = new DiscordSocketClient(new DiscordSocketConfig
@@ -28,7 +31,7 @@ namespace Disc
 
             Commands = new CommandService(new CommandServiceConfig
             {
-                CaseSensitiveCommands = true,
+                CaseSensitiveCommands = false,
                 DefaultRunMode = RunMode.Async,
                 LogLevel = LogSeverity.Debug
             });
@@ -37,14 +40,30 @@ namespace Disc
             await Commands.AddModulesAsync(Assembly.GetEntryAssembly(),null);
             Client.Ready += Client_Ready;
             Client.Log += Client_Log;
+            Client.LatencyUpdated += Client_LatencyUpdated;
 
-            string Token = "NTMzNjg4MjcwNzE5Mjg3Mjk2.XQY7OA.DrFAb0oT2HD43l7Mw3ynA621bSo";      //token bota. NIE UPUBLICZNIAĆ NIGDZIE
+
+            string Token = "Njg3NjU5NzY1NTYzNzg1MjU2.XqpiQw.Sff6OjItM-TFUA6Yyq9F8mw7DkM";      //token bota. NIE UPUBLICZNIAĆ NIGDZIE
+            // string testToken = "";
             await Client.LoginAsync(TokenType.Bot, Token);
             await Client.StartAsync();
 
             await Task.Delay(-1);       //bot nie wylacza sie po za dlugim oczekiwaniu
         }
-        
+
+        private Task Client_LatencyUpdated(SocketMessage MessageParam)
+        {
+            var Message = MessageParam as SocketUserMessage;
+            var Context = new SocketCommandContext(Client, Message);
+
+            if(Context.Channel.Name == "esther")
+            {
+                Context.Channel.SendMessageAsync("@Siru-Nyan#4015 buy premium");
+            }
+
+
+        }
+
         private async Task Client_Log(LogMessage Message)
         {
             Console.WriteLine($"{DateTime.Now} at {Message.Source}] {Message.Message}");
@@ -63,10 +82,17 @@ namespace Disc
             if (Context.Message == null || Context.Message.Content == "") return;
             if (Context.User.IsBot) return;
 
-            int ArgPos = 0;
-            if (!(Message.HasStringPrefix("a!", ref ArgPos) || Message.HasMentionPrefix(Client.CurrentUser, ref ArgPos))) return;
+            
 
-            var Result = await Commands.ExecuteAsync(Context, ArgPos, null);
+            int ArgPos = 0;
+            if (!(Message.HasStringPrefix("a!", ref ArgPos) || Message.HasMentionPrefix(Client.CurrentUser, ref ArgPos)))
+            {
+
+                return;
+            }
+
+
+            var Result = await Commands.ExecuteAsync(Context, ArgPos, null);    
 
             if(!Result.IsSuccess)
             {
