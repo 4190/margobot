@@ -40,27 +40,18 @@ namespace Disc
             await Commands.AddModulesAsync(Assembly.GetEntryAssembly(),null);
             Client.Ready += Client_Ready;
             Client.Log += Client_Log;
-            Client.LatencyUpdated += Client_LatencyUpdated;
 
 
-            string Token = "Njg3NjU5NzY1NTYzNzg1MjU2.XqpiQw.Sff6OjItM-TFUA6Yyq9F8mw7DkM";      //token bota. NIE UPUBLICZNIAĆ NIGDZIE
+            string Token = "";      //Bot token. Load from config file. 
             // string testToken = "";
             await Client.LoginAsync(TokenType.Bot, Token);
             await Client.StartAsync();
 
-            await Task.Delay(-1);       //bot nie wylacza sie po za dlugim oczekiwaniu
+            await Task.Delay(-1);       //Bot won't go offline after long idling.
         }
 
         private Task Client_LatencyUpdated(SocketMessage MessageParam)
         {
-            var Message = MessageParam as SocketUserMessage;
-            var Context = new SocketCommandContext(Client, Message);
-
-            if(Context.Channel.Name == "esther")
-            {
-                Context.Channel.SendMessageAsync("@Siru-Nyan#4015 buy premium");
-            }
-
 
         }
 
@@ -71,7 +62,7 @@ namespace Disc
 
         private async Task Client_Ready()
         {
-            await Client.SetGameAsync("Piece of shit", "https://www.google.com/");       //wyswietla ze bot jest w grze "piece of shit".
+            await Client.SetGameAsync("Piece of shit", "https://www.google.com/");       
         }
 
         private async Task Client_MessageReceived(SocketMessage MessageParam)
